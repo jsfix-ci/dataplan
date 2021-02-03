@@ -15,6 +15,7 @@ program
     "Finds all the valid dataplan YAML files in a folder and aggregates them in markdown files."
   )
   .arguments("[paths...]")
+  .option("-p, --prefix <prefix}", "A prefix for docusaurus links")
   .option(
     "-o, --output <path>",
     "A folder path where to send the resulting files. Defaults to current folder."
@@ -88,6 +89,10 @@ async function processIndex(index, destinationDir, rootId) {
     }
     out.println("`}/>");
     out.println();
+
+    const prefix = program._optionValues.prefix;
+    const result = `| [${rootUseCase.name}](${prefix}/index/index.html) | ${rootUseCase.author} |`;
+    console.error(result);
 }
 
 async function processFile(file, destination, root, index) {
@@ -109,7 +114,7 @@ async function processUseCase(id, uc, destinationDir, root, index) {
 
     const location = path.join(destinationDir, `${id}.md`);
 
-    index[id] = { name: uc.name, links: []};
+    index[id] = { name: uc.name, author: uc.author, links: []};
 
     let out = fs.createWriteStream(location);
     out.println = str => {
