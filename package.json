@@ -1,11 +1,9 @@
 {
-	"name": "dataplan",
+	"name": "dataplan-cli",
 	"version": "0.0.1",
 	"description": "A tool for creating data management plan documentation from yaml",
 	"main": "index.js",
-	"keywords": [
-		"dmp"
-	],
+	"keywords": [ "dmp" ],
 	"bin": {
 		"dataplan": "./index.js"
 	},
@@ -23,22 +21,13 @@
 	},
 	"homepage": "https://github.com/mprivat/dataplan#readme",
 	"commitlint": {
-		"extends": [
-			"@commitlint/config-conventional"
-		],
+		"extends": [ "@commitlint/config-conventional" ],
 		"rules": {
-			"header-max-length": [
-				0,
-				"always",
-				100
-			]
+			"header-max-length": [ 0, "always", 100 ]
 		}
 	},
 	"jest": {
-		"testPathIgnorePatterns": [
-			"/node_modules/",
-			"/undefined/"
-		]
+		"testPathIgnorePatterns": [ "/node_modules/", "/undefined/" ]
 	},
 	"husky": {
 		"hooks": {
@@ -59,10 +48,7 @@
 			[
 				"@semantic-release/git",
 				{
-					"assets": [
-						"docs/CHANGELOG.md",
-						"package.json"
-					],
+					"assets": [ "docs/CHANGELOG.md", "package.json" ],
 					"message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
 				}
 			]
