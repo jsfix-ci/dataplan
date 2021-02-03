@@ -79,7 +79,7 @@ async function processIndex(index, destinationDir, rootId) {
     out.println("<Mermaid chart={`");
     out.println("    flowchart TD");
     for (const [key, value] of Object.entries(index)) {
-        out.println(`    ${key}([<a href='${key}/index.html'>${value.name}</a>])`);
+        out.println(`    ${key}([<a href='../${key}/index.html'>${value.name}</a>])`);
     }
     for (const [key, value] of Object.entries(index)) {
         for(const link of value.links) {
@@ -139,17 +139,16 @@ async function processUseCase(id, uc, destinationDir, root, index) {
     out.println(uc.businessCase.customerBenefits);
     out.println();
 
-    if(uc.dataSources.length === 1) {
-        processDataSource(uc.dataSources[0], out, 2);
-    }
-    else if(uc.dataSources.length > 1) {
-        out.header(2, "Data Sources");
-        for(ds of uc.dataSources) {
-            processDataSource(ds, out, 3)
+    if(uc.dataSources) {
+        if(uc.dataSources.length === 1) {
+            processDataSource(uc.dataSources[0], out, 2);
         }
-    }
-    else {
-        throw new Error("Missing data source");
+        else if(uc.dataSources.length > 1) {
+            out.header(2, "Data Sources");
+            for(ds of uc.dataSources) {
+                processDataSource(ds, out, 3)
+            }
+        }
     }
 
     if(uc.subUseCases && uc.subUseCases.length > 0) {
@@ -178,6 +177,7 @@ function processDataSource(ds, out, baseLevel) {
     out.println();
     out.header(baseLevel+1, "Data flow");
     out.println("import Mermaid from '@theme/Mermaid';");
+    out.println();
     out.println("<Mermaid chart={`");
     out.println(ds.flowChart);
     out.println("`}/>");
