@@ -1,0 +1,37 @@
+name: Use-case 2
+author: John Doe
+email: jdoe@thecompany.com
+subUseCases:
+  - uc1.yaml
+businessCase:
+  description: >
+    Line 1
+    Line 2
+  customerBenefits: >
+    If you're going to move some data, hopefully
+    you know why.
+dataSources:
+  - name: Data source Y
+    description: >
+      This is a data source, which explains where
+      the data comes from.
+    flowChart: >
+      graph TD
+        Start --> Stop
+    permittedUse: >
+      The data is donated by the user of the app. So I get to do whatever I want.
+    retention: >
+      Gotta keep it for no more than 10 days.
+    data:
+      - name: User
+        attributes:
+          - name: FIRST_NAME
+            description: User First Name
+          - name: LAST_NAME
+            description: User Last Name
+      - name: Address
+        attributes:
+          - name: CITY
+            description: Address city
+          - name: STATE
+            description: Address state
