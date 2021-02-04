@@ -139,6 +139,8 @@ async function processUseCase(id, uc, destinationDir, root, index) {
     out.println(`Author: ${uc.author} (${uc.email})`);
     out.println();
 
+    out.println('< Back to the [top-level](../index/index.html) use-case');
+
     out.header(2, "Business Case");
     out.header(3, "Description");
     out.println(uc.businessCase.description);
