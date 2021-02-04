@@ -160,9 +160,13 @@ async function processUseCase(id, uc, destinationDir, root, index) {
     }
 
     if(uc.subUseCases && uc.subUseCases.length > 0) {
+        out.header(3, "Descendant use-cases");
         for(sub of uc.subUseCases) {
             const subId = await processFile(resolve(path.join(root, sub)), destinationDir, root, index);
             index[id].links.push(subId);
+
+            const suc = index[subId];
+            out.println(`- [${suc.name}](../${subId}/index.html)`);
         }
     }
 
