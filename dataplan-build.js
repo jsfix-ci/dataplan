@@ -131,6 +131,9 @@ async function processUseCase(id, uc, destinationDir, root, index) {
     out.println("---");
     out.println();
 
+    out.println("import Mermaid from '@theme/Mermaid';");
+    out.println();
+
     if(!uc.author) throw Error("Missing author");
     if(!uc.email) throw Error("Missing email");
     out.println(`Author: ${uc.author} (${uc.email})`);
@@ -181,8 +184,6 @@ function processDataSource(ds, out, baseLevel) {
     out.println(ds.description);
     out.println();
     out.header(baseLevel+1, "Data flow");
-    out.println("import Mermaid from '@theme/Mermaid';");
-    out.println();
     out.println("<Mermaid chart={`");
     out.println(ds.flowChart);
     out.println("`}/>");
